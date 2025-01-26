@@ -2,7 +2,6 @@ import 'dotenv/config'
 import { readdirSync } from "fs"
 
 import Eris, { CommandInteraction, ComponentInteraction, Constants } from "eris" ;
-import { type } from 'os';
 
 const commands = [];
 
@@ -26,7 +25,7 @@ bot.on("ready", async () => {
         //await bot.createGuildCommand('767921479273807873', slashCommandObject.default.data)
         // Use code underneath for global slash commands
         //await bot.createCommand(slashCommandObject)
-        commands.push({name: slashCommandObject.default.data.name, run: slashCommandObject.default.run})
+        commands.push({name: slashCommandObject.default.data.name, ephemeral: slashCommandObject.default.data.ephemeral, run: slashCommandObject.default.run})
     }
 
     console.log("Ready!")
@@ -42,7 +41,11 @@ bot.on("interactionCreate", async (interaction) => {
     if(interaction instanceof CommandInteraction) { //Slash command interaction handling
         for(let slashCommand of commands) {
             if (slashCommand.name === interaction.data.name) {
-                interaction.acknowledge()
+                if (slashCommand.ephemeral == true) {
+                    await interaction.acknowledge(Constants.MessageFlags.EPHEMERAL)
+                } else {
+                    await interaction.acknowledge()
+                }
                 await slashCommand.run(bot, interaction)
                 break
             }

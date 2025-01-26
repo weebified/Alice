@@ -7,6 +7,6 @@ export default {
         type: Constants.ApplicationCommandTypes.CHAT_INPUT
     },
     run: async (bot, interaction) => {
-        await interaction.createMessage("uwu!")
+        await interaction.createFollowup("uwu!")
     }
 }

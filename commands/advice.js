@@ -17,15 +17,15 @@ export default {
         }
 
         if (advice || advice?.ok) {
-            interaction.createMessage(advice.slip.advice)
+            interaction.createFollowup(advice.slip.advice)
         } else {
-            interaction.createMessage('There was an error')
+            interaction.createFollowup('There was an error')
         }
 
         //fetch("https://api.adviceslip.com/advice")
         //    .then((response) => response.json())
         //    .then((adviceJSON) => {
-        //        interaction.createMessage(adviceJSON.slip.advice);
+        //        interaction.createFollowup(adviceJSON.slip.advice);
         //    }) 
     }
 }

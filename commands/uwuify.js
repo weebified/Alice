@@ -25,6 +25,6 @@ export default {
         ]
     },
     run: async (bot, interaction) => {
-        await interaction.createMessage(uwuifier.uwuifySentence(interaction.data.options[0].value))
+        await interaction.createFollowup(uwuifier.uwuifySentence(interaction.data.options[0].value))
     }
 }
