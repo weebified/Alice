@@ -17,15 +17,15 @@ export default {
         }
 
         if (fact || fact?.ok) {
-            interaction.createMessage(fact.fact)
+            interaction.createFollowup(fact.fact)
         } else {
-            interaction.createMessage('There was an error')
+            interaction.createFollowup('There was an error')
         }
 
         //fetch("https://useless.dotenv.dev/api/random")
         //    .then((response) => response.json())
         //    .then((factJSON) => {
-        //        interaction.createMessage(factJSON.fact);
+        //        interaction.createFollowup(factJSON.fact);
         //    }) 
     }
 }

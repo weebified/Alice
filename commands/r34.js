@@ -14,8 +14,6 @@ export default {
         ]
     },
     run: async (bot, interaction) => {
-        console.log('received')
-
         if (interaction.channel.nsfw) {
             let imgs;
             let value;
@@ -35,7 +33,7 @@ export default {
             } catch (err) {
                 console.error(err)
                 if (err.message === 'Unexpected end of JSON input') {
-                    interaction.createMessage({
+                    interaction.createFollowup({
                         embed: {
                             color: parseInt("ED4245", 16),
                             title: "No results!",
@@ -70,9 +68,9 @@ export default {
                     desc = 'This is a video'
                 }
 
-                interaction.createMessage({
+                interaction.createFollowup({
                     embed: {
-                        color: parseInt("93c7c5", 16),
+                        color: parseInt(process.env.ACCENT_COLOR, 16),
                         title: "Link to rule34 page",
                         url: `https://rule34.xxx/index.php?page=post&s=view&id=${img.id}`,
                         description: desc,
@@ -85,10 +83,10 @@ export default {
                     }
                 })
             } else if(error !== 'Unexpected end of JSON input'){
-                interaction.createMessage('There was an error')
+                interaction.createFollowup('There was an error')
             }
         } else {
-            interaction.createMessage({content: "Idiot!! This channel isn't marked as NSFW! You can't use this here!", flags: Constants.MessageFlags.EPHEMERAL})
+            interaction.createFollowup({content: "# Idiot!! This channel isn't marked as NSFW! You can't use this here!", flags: Constants.MessageFlags.EPHEMERAL})
         }
     }
 }

@@ -21,6 +21,7 @@ export default {
 
         let user = (interaction.member.user).username;
         let punishedUser = ((((interaction.channel).guild).members).get(interaction.data.options[0].value)).user.username; //gets user ID from interaction returned value then uses that to sift through server member list to find user's username
+        //in case of future implementation of user application command fetch username directly from discord API https://discord.com/api/v9/users/{id}, must include header with bot token
 
         loadImage("./ressources/cat.jpg").then((img) => {
             ctx.drawImage(img, 0, 0, 600, 337)
@@ -32,7 +33,7 @@ export default {
             ctx.fillText(punishedUser, 390, 125)
 
             let attachment = canvas.toBuffer();
-            interaction.createMessage('', {name: 'cat.jpg', file: attachment})
+            interaction.createFollowup('', {name: 'cat.jpg', file: attachment})
         })
     }
 }

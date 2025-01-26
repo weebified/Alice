@@ -7,9 +7,9 @@ export default {
         type: Constants.ApplicationCommandTypes.CHAT_INPUT
     },
     run: async (bot, interaction) => {
-        interaction.createMessage({
+        interaction.createFollowup({
             embed: {
-                color: parseInt("93c7c5", 16),
+                color: parseInt(process.env.ACCENT_COLOR, 16),
                 title: "Thank you!",
                 description: "Alice was made with :heart: by weebified",
                 thumbnail: {url: `https://cdn.discordapp.com/avatars/${(bot.user).id}/${(bot.user).avatar}`}

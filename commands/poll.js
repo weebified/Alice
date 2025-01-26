@@ -52,7 +52,7 @@ export default {
 
         bot.createMessage(channelID, {
             embed: {
-                color: parseInt("93c7c5", 16),
+                color: parseInt(process.env.ACCENT_COLOR, 16),
                 title: question.value,
                 footer: {
                     text: `Up for ${duration.value} hours` //get current EST time and put it here to enable compare
@@ -73,7 +73,7 @@ export default {
             ]
         })
 
-        interaction.createMessage({content: 'Poll created!', flags: Constants.MessageFlags.EPHEMERAL})
+        interaction.createFollowup({content: 'Poll created!', flags: Constants.MessageFlags.EPHEMERAL})
         console.log(interaction)
 
         //save interaction id as custom id + button identifier (mayeb number?) and then when press button use custom id and split it to get the interaction id to identify the specific poll and then update it

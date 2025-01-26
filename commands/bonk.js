@@ -21,6 +21,7 @@ export default {
 
         let user = (interaction.member.user).username;
         let horniUser = ((((interaction.channel).guild).members).get(interaction.data.options[0].value)).user.username; //gets user ID from interaction returned value then uses that to sift through server member list to find user's username
+        //in case of future implementation of user application command fetch username directly from discord API https://discord.com/api/v9/users/{id}, must include header with bot token
 
         loadImage("./ressources/bonk.png").then((img) => {
             ctx.drawImage(img, 0, 0, 600, 333)
@@ -32,7 +33,7 @@ export default {
             ctx.fillText(horniUser, 475, 310)
 
             let attachment = canvas.toBuffer();
-            interaction.createMessage('', {name: 'bonk.png', file: attachment})
+            interaction.createFollowup('', {name: 'bonk.png', file: attachment})
         })
     }
 }
