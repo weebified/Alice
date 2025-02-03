@@ -1,2 +1,2 @@
 # Alice
-A discord bot programmed using Eris
+Let's go gambling!
